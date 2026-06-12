@@ -1,0 +1,266 @@
+\documentclass[11pt,letterpaper]{article}
+
+\usepackage[margin=0.78in,top=0.85in,bottom=0.85in]{geometry}
+\usepackage{microtype}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{tikz}
+\usepackage[most]{tcolorbox}
+\usepackage{caption}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{multicol}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{mathpazo}
+\usepackage[scaled=0.92]{helvet}
+\usepackage{courier}
+
+\definecolor{midnight}{HTML}{123047}
+\definecolor{ocean}{HTML}{0E7490}
+\definecolor{sky}{HTML}{E8F5F8}
+\definecolor{mint}{HTML}{E6F7EF}
+\definecolor{ink}{HTML}{243447}
+\definecolor{muted}{HTML}{64748B}
+\definecolor{warm}{HTML}{FFF7ED}
+\definecolor{gold}{HTML}{C27803}
+\definecolor{linegray}{HTML}{CBD5E1}
+
+\hypersetup{colorlinks=true, linkcolor=ocean, urlcolor=ocean, citecolor=ocean}
+\color{ink}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.72em}
+\renewcommand{\arraystretch}{1.18}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{\sffamily\footnotesize Early Stage Diabetes Risk Detection}
+\rhead{\sffamily\footnotesize Hiba Khan}
+\cfoot{\sffamily\footnotesize Page \thepage\ of \pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\headrule}{\hbox to\headwidth{\color{ocean}\leaders\hrule height \headrulewidth\hfill}}
+
+\titleformat{\section}
+  {\Large\bfseries\sffamily\color{midnight}}
+  {\llap{\colorbox{ocean}{\textcolor{white}{\sffamily\bfseries\thesection}}\hspace{0.7em}}}
+  {0pt}{ }
+\titleformat{\subsection}{\large\bfseries\sffamily\color{ocean}}{}{0pt}{}
+\titlespacing*{\section}{0pt}{1.1em}{0.55em}
+\titlespacing*{\subsection}{0pt}{0.9em}{0.35em}
+
+\captionsetup{font={small,it}, labelfont={bf,color=ocean}, textfont={color=ink}, skip=8pt}
+
+\newtcolorbox{insightbox}[1]{
+  enhanced, breakable,
+  colback=sky, colframe=ocean,
+  boxrule=0.7pt, arc=3mm,
+  left=3.5mm, right=3.5mm, top=2.5mm, bottom=2.5mm,
+  title={#1}, fonttitle=\bfseries\sffamily, coltitle=white,
+  attach boxed title to top left={xshift=3mm,yshift=-2mm},
+  boxed title style={colback=ocean, colframe=ocean, arc=2mm}
+}
+
+\newtcolorbox{methodbox}[1]{
+  enhanced, breakable,
+  colback=warm, colframe=gold,
+  boxrule=0.6pt, arc=3mm,
+  left=3.5mm, right=3.5mm, top=2.5mm, bottom=2.5mm,
+  title={#1}, fonttitle=\bfseries\sffamily, coltitle=white,
+  attach boxed title to top left={xshift=3mm,yshift=-2mm},
+  boxed title style={colback=gold, colframe=gold, arc=2mm}
+}
+
+\newcommand{\metric}[2]{\begin{tcolorbox}[enhanced, colback=white, colframe=linegray, arc=2mm, boxrule=0.5pt, left=2mm,right=2mm,top=2mm,bottom=2mm, halign=center]\sffamily\bfseries\Large\color{ocean} #1\\[-1mm]\footnotesize\color{muted} #2\end{tcolorbox}}
+
+\begin{document}
+
+\begin{titlepage}
+\begin{tikzpicture}[remember picture,overlay]
+  \fill[midnight] (current page.north west) rectangle ([xshift=2.0in]current page.south west);
+  \fill[ocean] ([xshift=2.0in]current page.north west) rectangle ([xshift=2.07in]current page.south west);
+  \fill[sky] ([xshift=2.07in]current page.north west) rectangle (current page.south east);
+  \foreach \y in {0.5,1.2,...,10.5}{\draw[white,opacity=.08,line width=0.6pt] ([xshift=0.15in,yshift=-\y in]current page.north west)--([xshift=1.85in,yshift=-\y in]current page.north west);}
+\end{tikzpicture}
+\vspace*{0.85in}
+\hspace*{1.72in}\begin{minipage}{0.74\textwidth}
+  {\sffamily\bfseries\fontsize{28}{34}\selectfont\color{midnight} Early Stage Diabetes Risk Detection Analysis}\par
+  \vspace{0.25in}
+  {\sffamily\Large\color{ocean} A machine learning screening study using CDC health indicators}\par
+  \vspace{0.45in}
+  \begin{tcolorbox}[enhanced, colback=white, colframe=ocean, boxrule=0.8pt, arc=4mm, width=0.9\linewidth]
+  \sffamily
+  \textbf{Author:} Hiba Khan\\
+  \textbf{Date:} May 4, 2026\\
+  \textbf{Focus:} non-invasive diabetes-risk prediction, recall-oriented evaluation, model interpretability
+  \end{tcolorbox}
+  \vspace{0.35in}
+  \begin{multicols}{3}
+    \metric{253,680}{instances}
+    \metric{21}{features}
+    \metric{81\%+}{optimized recall}
+  \end{multicols}
+\end{minipage}
+\vfill
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+Diabetes is one of the leading causes of immense financial pressure on international healthcare support systems, both individual and global. The prevalence of this chronic illness needs no introduction as cases keep surging with each passing year, up from 200 million in 1990 to 830 million in 2022. This is mostly caused by increasing obesity, sedentary careers, and more people aging than ever before. If this chronic public health crisis is detected early, many severe complications such as end-stage renal disease, cardiovascular disease, and neuropathy can be avoided or at least mitigated.
+
+Clinical diagnosis has always been expensive, both financially and logistically, for under-insured and rural populations because it relies on laboratory tests. Diabetes prevalence is especially high in several developing countries, such as Pakistan, highlighting the need for low-cost and accessible early screening tools in resource-limited healthcare settings.
+
+\begin{insightbox}{Project Goal}
+This project investigates whether machine learning algorithms can accurately predict diabetes risk using only non-invasive, self-reported demographic and lifestyle data. If successful, the model could support a low-cost digital screening tool that flags high-risk individuals for clinical follow-up.
+\end{insightbox}
+
+The analysis uses the CDC Diabetes Health Indicators Dataset, derived from the 2014 Behavioral Risk Factor Surveillance System (BRFSS). This telephone survey collected health and lifestyle data from roughly 400,000 respondents each year. Since BRFSS is self-reported, the dataset has limitations such as response bias, recall inaccuracy, and underreporting of stigmatized behaviors. The UCI Machine Learning Repository hosts the dataset and the original documentation.
+
+Because missed diagnosis can have severe consequences, the model must put the highest priority on \textbf{Recall} while maintaining as much \textbf{Specificity} as possible. Interpretability is also important because opaque model outputs carry their own risks for time-pressed medical practitioners.
+
+\section{Data Explanation and Exploration}
+The dataset is comprised of 253,680 instances and 21 features, representing a large cross-section of the US population. The features span lifestyle and demographic domains, including BMI, physical activity, income brackets, age brackets, smoking status, self-rated health, and healthcare access. In clinical literature, these predictors are associated with metabolic disease.
+
+The target variable is \texttt{Diabetes\_binary}, where \texttt{0} means no diabetes and \texttt{1} means diabetes. The target distribution is highly imbalanced: 86.06\% non-diabetic and 13.93\% diabetic. Because the ratio is almost 6:1, preprocessing and metric selection had to account for class imbalance.
+
+\subsection{EDA and Assumption Checks}
+Assumption checks were performed before constructing the models. Based on prior knowledge, multiple relationships were expected: inactive physical life correlates with increased BMI, which is expected to influence diabetes risk; similarly, reduced healthcare access is often associated with lower income.
+
+To detect potential multicollinearity among features such as general health, mental health days, and BMI, A Pearson correlation matrix was generated and Variance Inflation Factors (VIF) were calculated for all predictors. The results showed that multicollinearity was not a limiting factor for linear models because VIF values stayed within acceptable bounds of 5.
+
+\subsection{Preprocessing Strategy}
+\begin{methodbox}{Preprocessing Pipeline}
+\begin{enumerate}[leftmargin=*, itemsep=0.35em]
+  \item \textbf{Categorical mapping and one-hot encoding:} Variables such as Age, General Health, Education, and Income were mapped to descriptive strings and then one-hot encoded so that each model could treat each category as a distinct input.
+  \item \textbf{Feature scaling:} Using \texttt{StandardScaler}, only the continuous BMI variable was standardized around a mean of 0 and a standard deviation of 1. Scaling was not applied to binary and one-hot encoded variables because those already exist on a 0/1 scale.
+  \item \textbf{Stratified splitting:} Since only about 14\% of the patients were diagnosed with diabetes, an 80/20 train-test split stratified by outcome was used to preserve the same target distribution in training and testing sets.
+\end{enumerate}
+\end{methodbox}
+
+\section{Algorithms and Techniques Analysis}
+The machine learning techniques for this project include an ensemble approach using Gradient Boosting, Random Forest, and Logistic Regression. Logistic Regression was chosen as the main baseline because it is commonly used for binary classification and fits the CDC diabetes dataset, which is mostly binary or ordinal.
+
+From a statistical perspective, Logistic Regression is appropriate because it models the probability that an individual will develop diabetes, making it a strong baseline for clinical use. It is also interpretable for healthcare practitioners, making it easier to determine which factors increase a patient's risk.
+
+However, Logistic Regression alone is often not statistically powerful enough to capture the full complexity of the data. It assumes a linear relationship between the log odds of the risk factors and the target. Violations of assumptions, such as non-linearity or complex feature interactions, can lower its statistical power. For this reason, an ensemble-based approach using Gradient Boosting models such as XGBoost and LightGBM, along with Random Forest models, was expected to be more effective.
+
+Gradient Boosting and Random Forest models can detect complex, high-order interactions between features without relying on strict statistical assumptions. Gradient Boosting improves performance by sequentially learning from previous errors and focusing heavily on observations that are difficult to classify.
+
+\subsection{Hyperparameter Tuning and Class Imbalance}
+To combat the 6:1 class imbalance, Algorithmic penalization was implemented instead of synthetic resampling such as SMOTE. SMOTE added computational time and complexity without improving performance, especially since the dataset is large. Options such as \texttt{class\_weight='balanced'} and \texttt{is\_unbalance=True} were specified. Models were optimized with 3- to 5-fold \texttt{GridSearchCV}, using \textbf{Recall} as the primary scoring metric to prioritize catching true diabetes cases.
+
+\subsection{Initial Results at Default 0.5 Threshold}
+At the default decision boundary of 0.5, the models showed erratic behavior due to aggressive class weighting.
+
+\begin{table}[H]
+\centering
+\caption{Model evaluation metrics at the default threshold of 0.5.}
+\begin{tabularx}{\linewidth}{>{\bfseries}Xccc}
+\toprule
+Model & Sensitivity & Specificity & F1 \\
+\midrule
+Logistic Regression & 0.775 & 0.718 & 0.441 \\
+LightGBM & 0.166 & 0.978 & 0.439 \\
+XGBoost & 0.944 & 0.390 & 0.330 \\
+Ensemble (Soft Voting) & 0.3685 & 0.932 & 0.467 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The Soft Voting Ensemble averaged the predicted probabilities of Logistic Regression, XGBoost, and LightGBM. Its weak recall score rejected the hypothesis that ensembling would automatically improve predictive performance.
+
+\subsection{Threshold Optimization with Youden's J Statistic}
+Youden's J index, $J = \text{Sensitivity} + \text{Specificity} - 1$, was calculated across the ROC curve. This is a common healthcare evaluation approach and helped identify the optimal threshold for each model by balancing Recall and Specificity.
+
+\begin{table}[H]
+\centering
+\caption{Model evaluation metrics at optimized Youden's J statistic thresholds.}
+\begin{tabularx}{\linewidth}{>{\bfseries}Xcccc}
+\toprule
+Model & Optimized Threshold & Sensitivity & Specificity & F1 \\
+\midrule
+Logistic Regression & 0.4560 & 0.8169 & 0.6782 & 0.4295 \\
+LightGBM & 0.4860 & 0.8100 & 0.6913 & 0.4363 \\
+XGBoost & 0.1383 & 0.7868 & 0.7131 & 0.4422 \\
+Ensemble & 0.3594 & 0.8116 & 0.6903 & 0.4358 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\begin{insightbox}{Threshold Finding}
+The default 0.5 boundary is a misleading cutoff point for this data because aggressive class weighting shifted model probabilities away from the midpoint. Optimized thresholds produced much more clinically useful results.
+\end{insightbox}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{images/img-000.png}
+\caption{Calibration, Precision-Recall, and ROC curves for benchmark models. LightGBM matches the Ensemble across major metrics while remaining better calibrated.}
+\end{figure}
+
+The calibration plot shows that the models struggle with very high and very low probabilities. They are not confident enough when predicting low-risk cases and can be too confident when predicting high-risk cases. The probability scores do not perfectly reflect reality. However, a model can still correctly rank which individual is more at risk compared with others, even if it is not definitive.
+
+A PR AUC of 0.40--0.42 conveys more information than ROC AUC when positive cases are low. It is mathematically about three times better than random chance because a random model would score roughly 0.139, matching the diabetic base rate of the dataset. Since this project prioritizes flagging as many true cases of diabetes as possible, F1 scores remain low. In a healthcare context, it is more acceptable to flag a healthy person for follow-up than to miss someone who is actually at risk.
+
+\section{Why the Ensemble Did Not Outperform}
+The optimized benchmark models were on par with, and sometimes even outperformed, the ensemble. There are three major reasons why the added complexity of combining models failed to produce worthwhile improvements.
+
+\begin{methodbox}{Reason 1: Probability Calibration Divergence}
+Soft voting takes the arithmetic mean of each model's confidence scores. Logistic Regression and tree-based models produce confidence scores on very different scales. Logistic Regression outputs more balanced estimates, while LightGBM, forced to focus aggressively on the minority class, produced more skewed scores. Averaging mismatched outputs distorted the ensemble's decision boundary.
+\end{methodbox}
+
+\begin{methodbox}{Reason 2: Feature Space Redundancy}
+LightGBM and XGBoost are built on similar underlying ideas, so they learned very similar patterns from the data. Averaging two highly similar models did not meaningfully improve predictions; it mostly added redundant computation.
+\end{methodbox}
+
+\begin{methodbox}{Reason 3: The Equalizing Power of Youden's J}
+Ensembles often perform better because they smooth out variance across individual models. But once each single model is explicitly threshold-optimized with Youden's J, much of that advantage disappears. After finding a strong operational point for LightGBM and Logistic Regression, the marginal gain of ensembling approaches zero.
+\end{methodbox}
+
+Following Occam's Razor, the LightGBM model is the superior practical choice. The ensemble uses around three times more memory and more training time just to reach similar results. LightGBM and Logistic Regression were close, but LightGBM was chosen because it can identify complex relationships that Logistic Regression cannot structurally capture. It also achieved better Specificity and F1 while supporting SHAP-based explanations, which make the tool more interpretable for clinicians.
+
+\section{SHAP Explanations}
+SHAP (SHapley Additive exPlanations) values were generated using \texttt{TreeExplainer} on the LightGBM model. This identified which features influenced each individual prediction the most and made the model's predictions more readable and explainable.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.92\linewidth]{images/img-002.png}
+\caption{Global SHAP plot showing the top 15 features driving LightGBM predictions.}
+\end{figure}
+
+The SHAP plot shows the features that most influenced the model's predictions. The three strongest indicators match clinical research about diabetes risk factors: high blood pressure, BMI, and self-rated general health. High cholesterol is also close behind. Interestingly, people rating their own health as excellent or very good were strongly predicted as low risk, which suggests that a patient's own perception of health is genuinely informative.
+
+Income also ranks highly, appearing above several more clinical variables. This shows how financial stability may affect health outcomes downstream. Age also contributes to predictions across different brackets, though no single age group can be isolated as the sole driver.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.88\linewidth]{images/img-004.png}
+\caption{Individual SHAP waterfall plot for Patient 33, a confirmed diabetic patient with a predicted diabetes probability of 69\%.}
+\end{figure}
+
+The code was meant to find the first true positive case, compute individual SHAP values, and create a waterfall plot. The waterfall plot explains how the model reached a 69\% predicted probability of diabetes for a single patient who later turned out to be confirmed diabetic. Each bar shows the effect of a specific feature in pushing or pulling the prediction toward a positive diagnosis.
+
+For this patient, BMI made the largest contribution at +1.07, followed by high blood pressure (+0.61) and high cholesterol (+0.39). The patient also self-rated their health poorly (+0.32) and had a low income bracket (+0.11). This aligns with the model's broader emphasis on both clinical and socioeconomic indicators. The plot provides a concise, feature-level breakdown that a clinician could use to explain a patient's risk profile.
+
+\section{Conclusion}
+This project demonstrates that self-reported survey data alone can successfully flag individuals at high risk for diabetes, with over 81\% Recall. Contrary to the initial hypothesis, the increased effort and computation of building a more complex ensemble model did not produce meaningful benefit. A single well-tuned LightGBM model turned out to be the most efficient and clinically practical solution for this use case.
+
+That said, the model still has a clear ceiling. Survey-based data is inherently limited: people do not always introspect accurately or honestly report health behaviors. The diagnostic certainty of a blood test cannot be replicated with a simple questionnaire. Regardless of model tuning, this limits how precise the model can realistically be.
+
+\begin{insightbox}{Future Research Questions}
+\begin{itemize}[leftmargin=*, itemsep=0.35em]
+  \item Would performance improve with biological markers such as glucose levels, insulin levels, HbA1c, and lipid profiles?
+  \item Is the model unbiased across racial, socioeconomic, and geographic groups, or is it reflecting healthcare divides embedded in the data?
+  \item Could NLP applied to medical notes or electronic health records outperform a structured survey-based model?
+\end{itemize}
+\end{insightbox}
+
+\end{document}
