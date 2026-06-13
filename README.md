@@ -4,7 +4,7 @@
 
 This project aims to support early diabetes intervention by predicting diabetes risk from CDC behavioral survey data and identifying the key drivers behind that risk.
 
-The project uses a LightGBM binary classification pipeline on a dataset with significant class imbalance, where only about 14% of patients had diabetes. To improve prediction quality for the minority class, SMOTE was applied to oversample diabetic cases during training.
+The project uses a LightGBM binary classification pipeline built in Python on a dataset with significant class imbalance, where only about 14% of patients had diabetes. To improve prediction quality for the minority class, SMOTE was applied to oversample diabetic cases during training.
 
 ## Project Goal
 
@@ -53,9 +53,8 @@ Despite the challenging class distribution, the model performed roughly three ti
 
 The project also shows that interpretable machine learning can help explain not only whether someone is at higher risk, but also which factors are contributing most to that risk.
 
-## Technologies Used
+## Methods/Libraries Used
 
-- Python
 - LightGBM
 - SMOTE
 - SHAP TreeExplainer
