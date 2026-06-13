@@ -69,6 +69,18 @@ Early diabetes detection can help connect high-risk individuals with clinical fo
 
 This project demonstrates how machine learning can support early intervention while still providing interpretable insights into the drivers of diabetes risk.
 
+## Additional Files:
+
+
+This repository also includes supporting files for reviewing the full project:
+
+* **Final PDF Report** — A polished project report summarizing the objective, dataset, modeling strategy, performance results, fairness assessment, and final recommendations.
+* **Python Source Code (`.ipynb`)** — The source analysis file containing the code used for data preparation, feature engineering, model training, evaluation, and reporting.
+* **Markdown Report Version** — A GitHub-friendly version of the PDF report, including images and visual outputs, so the full analysis can be viewed directly in the repository.
+
+These files provide both a high-level explanation of the project and the technical workflow behind the final results.
+
+
 ## Disclaimer
 
 This project is for educational and research purposes only. It is not a medical diagnostic tool and should not replace professional clinical evaluation or laboratory testing.
